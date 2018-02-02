@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<title>{% block title %}{% endblock %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta lang="zh-tw">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="static/js/jquery.twzipcode.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css" />
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="static/css/base.css" />
+<script src="static/js/form.js"></script>
+<h1 align="center">{% block h1 %}{% endblock %}</h1>
+<p align="right">回收時間：2018/01//19定訂</p>
+
+<body>
+    <a href="https://tw.yahoo.com/" class="download">下載 word 檔案</a>
+    <div align="center">
+        <table border="1" ; width=90%; style='font-size:17px; text-align: left' ;>
+            <tbody>
+                <tr>
+                    <td>
+                        {% block intro %}{% endblock %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <form method="POST">
+            {% csrf_token %}
+    <div>
+        <h2 align="left">一、基本資料</h2>
+
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        
+                            <p>
+                                <b>年齡</b>（在填答問卷此時的實際歲數）：
+                                <input type="number" name="age" size="4">
+                            </p>
+                            <p>
+                                <b>性別</b>：
+                                <input type="radio" name="gender" value="male" id="">男
+                                <input type="radio" name="gender" value="female" id="">女
+                                <input type="radio" name="gender" value="other" id="">其他（ 請註明
+                                <input type="text" name="gender-other"> )
+                            </p>
+                            <p>
+                                <b>教育程度</b>：
+                                <input type="radio" name="edu" value="elementary" id="">小學
+                                <input type="radio" name="edu" value="junior" id="">中學
+                                <input type="radio" name="edu" value="senior" id="">高中、職
+                                <input type="radio" name="edu" value="bachelor" id="">大學、專科
+                                <input type="radio" name="edu" value="master" id="">碩士
+                                <input type="radio" name="edu" value="doctor" id="">博士
+                            </p>
+                            <p>
+                                <b>職業與專長領域</b>：
+                                <input type="text" name="expertise">&nbsp;(如果有許多個，請選最能代表您的來寫。)</p>
+                            <p>
+                                <b>宗教信仰：</b>
+                                <input type="radio" name="religion" value="no" id="">無 （
+                                <input type="radio" name="religion" value="yes" id="">有
+                                <input type="text" name="religion_text">&nbsp; *請註明，如基督教、民間信仰等）</p>
+                            <p>
+                                <b>族群：</b>
+                                <input type="radio" name="race" value="taiwanese" id="">台灣華人
+                                <input type="radio" name="race" value="aboriginal" id="">原住民
+                                <input type="radio" name="race" value="oversea_chinese" id="">國籍為非中華民國的華人(居住地為：
+                                <input type="text" name="oversea_chinese" size="4">&nbsp;)
+                                <input type="radio" name="race" value="categorize" id="">入台灣籍的外國人士(非華裔但具中華民國國籍的人士）
+                                <input type="radio" name="race" value="foreign" id="">外國人士(非華裔也非具中華民國國籍的人士）
+                                <p>
+                                    <b>婚姻狀況：</b>
+                                    <input type="radio" name="marriage" value="un_rel" id="">未婚、尚未找到可以長時間投入感情的對象
+                                    <input type="radio" name="marriage" value="un_has_rel" id="">未婚、已經有長時間投入感情的對象
+                                    <input type="radio" name="marriage" value="ma_no" id="">已婚、尚未撫養任何子女
+                                    <input type="radio" name="marriage" value "ma_kids"id="">已婚、已經撫養子女
+                                    <input type="radio" name="marriage" value="divorce" id="">離婚
+                                    <input type="radio" name="marriage" value="windowes" id="">喪偶
+                                    <input type="radio" name="marriage" value="edu_other" id="">其他（請註明
+                                    <input type="text" name="marriage_other" size="4">）
+                                </p>
+                                <p>
+                                    <b>您所成長的城市與鄉鎮：</b>
+                                    <div id="zipcode1"></div>
+                                    <script>
+                                        $("#zipcode1").twzipcode({
+                                            countySel: "臺北市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+                                            districtSel: "大安區", // 地區預設值
+                                            zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+                                            css: ["city form-control", "town form-control"], // 自訂 "城市"、"地區" class 名稱
+                                            countyName: "grow_city", // 自訂城市 select 標籤的 name 值
+                                            districtName: "grow_town" // 自訂地區 select 標籤的 name 值
+                                        });
+                                    </script>
+                                </p>
+                                <p>
+                                    <b>評量表填答的時間與地點：</b>
+                                    <input id="thedate" type="text" readonly="readonly">
+                                    <div id="zipcode2"></div>
+                                    <script>
+                                        $("#zipcode2").twzipcode({
+                                            countySel: "臺北市", // 城市預設值, 字串一定要用繁體的 "臺", 否則抓不到資料
+                                            districtSel: "大安區", // 地區預設值
+                                            zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
+                                            css: ["city form-control", "town form-control"], // 自訂 "城市"、"地區" class 名稱
+                                            countyName: "fill_city", // 自訂城市 select 標籤的 name 值
+                                            districtName: "fill_town" // 自訂地區 select 標籤的 name 值
+                                        });
+                                    </script>
+                                </p>
+
+                       
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>二、問題</h2>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                 
+                        <h3>(一)、您對智慧的想法</h3>
+                        <ol>
+                            <li>您認為甚麼是智慧?(請根據您自己的想法來作答，不用考慮其他人的想法。謝謝!)</li>
+                            <textarea placeholder="什麼是智慧呢？" name="whatIsWisdom"></textarea>
+                            <li>您覺得您是一個有智慧的人嗎? (請根據您自己的想法來作答，不用考慮其他人的想法。謝謝!)
+                                <input type="range" min="1" max="5" value="3" class="slider" name="is_wisdom1" id="smartDegreeSlider1">
+                                <span id="smartDegree1" style="font-size:1.5em; color:blue;"></span>
+                                <p>&nbsp;</p>
+                                <h3>(二)、智慧事件</h3>
+                                <li>請根據您自己對智慧的定義，
+                                    <span class="text-bg">詳細描述您做過最有智慧的一件事情。(請詳細描述那個事件，以及當時的經過或前因後果，所以他人也能了解您寶貴的經驗，並從中獲益。</span>如果答案太過簡短，會使得這份問卷無法被分析而成為廢卷，請至少寫一百字以上，麻煩您了，無限感激!如果您做過許多有智慧的事情，請選其中對您最重要的來寫。）</li>
+                                <textarea name="most_wisdom"></textarea>
+                                <li>這個智慧事件開始發生的時間大約在甚麼時候?</li>
+                                <p>大約在哪一年?
+                                    <input type="number" name="most_wisdom_year" size="4">&nbsp;年，您大約
+                                    <input type="number" name="most_wisdom_old" size="4">&nbsp;歲，距今大約
+                                    <input type="number" name="most_wisdom_period" size="4">&nbsp;年。</p>
+                                <li>為甚麼這件事情對您而言是有智慧的事？(例如，對您而言，這個事情有甚麼特別的地方？)</li>
+                                <textarea name="special"></textarea>
+
+                                <li>在您做的這件有智慧的事情中，您的智慧最主要展現在下列哪一方面?(請單選一個您覺得最適合您所做的智慧事件的類別)</li>
+                                <!-- <div id="wisdom_perform"></div>
+                                <script>radioCreate("wisdom_perform")</script> -->
+                                <input type="radio" name="wisdom_perform" value="0"> (1) 解決日常生活中所遇到的問題
+                                <br>
+                                <input type="radio" name="wisdom_perform" value="1"> (2) 生活管理
+                                <br>
+                                <input type="radio" name="wisdom_perform" value="2"> (3) 生命規劃
+                                <br>
+                                <input type="radio" name="wisdom_perform" value="3"> (4) 對他人有幫助
+                                <br>
+                                <input type="radio" name="wisdom_perform" value="4"> (5) 對大環境有建樹
+                                <br>
+                                <h3>(三)、想法</h3>
+                                <p class="text-bg">現在請您回憶一下您在前面所寫的您做過最有智慧的事情，再來回答下面的問題。</p>
+                                <li>您在做這件有智慧的事情的時候有什麼重要的想法？有什麼樣的想法激發您去做出這件有智慧的事情？</li>
+                                <textarea name="think"></textarea>
+                                <li>您在上述的想法您所考慮到的要素有哪些？請條列並以數字標號您在上述的想法所兼顧或整合的要素是哪些。 (包含不同的人、事、物、觀點，或是思考的層面、知識的領域等，請根據您自己的判斷和理解來回答，謝謝!)</li>
+                                <ol>
+                                    <div id="think_element"></div>
+                                    <script>
+                                        createInput("think_element", 10);
+                                    </script>
+                                </ol>
+                                <li>我覺得上述的這個想法對當時的我而言，是嶄新的、不同於以往的想法。</li>
+                                <p>(非常不同意)
+                                    <input type="radio" name="idea" value="1"> 1 &nbsp;
+                                    <input type="radio" name="idea" value="2"> 2 &nbsp;
+                                    <input type="radio" name="idea" value="3"> 3 &nbsp;
+                                    <input type="radio" name="idea" value="4"> 4 &nbsp;
+                                    <input type="radio" name="idea" value="5"> 5 &nbsp; (非常同意)
+                                </p>
+
+                                <h3>(四)、行為</h3>
+                                <p class="text-bg">現在請您回憶一下您在第一題所寫的您做過最有智慧的事情，再來回答下面的問題。</p>
+                                <li>您在當下如何落實您在前面所提及的想法，請條列並以數字標號您的行為或方法包含哪幾種行為或方法？(請儘可能就您能想到的各方面的作為詳細並具體的描述。謝謝！)</li>
+                                <ol>
+                                    <div id="behavior_element"></div>
+                                    <script>
+                                        createInput("behavior_element", 10);
+                                    </script>
+                                </ol>
+                                <li>您在當下做這件有智慧的事情的過程中所遭遇的困難包含心理上的、身體上的、道德上的、社交上的，或是關係上等的困難)有哪些? 請編號並條列您所遭遇之困難。(如果沒有請寫：無。)</li>
+                                <ol>
+                                    <div id="wisdom_difficulty"></div>
+                                    <script>
+                                        createInput("wisdom_difficulty", 10);
+                                    </script>
+                                </ol>
+                                <li>上述的困難中，您曾經成功克服的有哪些? 請編號並條列您所成功克服的困難，並簡單描述您如何克服這些困難。</li>
+                                <ol>
+                                    <div id="wisdom_conquer"></div>
+                                    <script>
+                                        createInput("wisdom_conquer", 10);
+                                    </script>
+                                </ol>
+                                <h3>(五)、正面影響</h3>
+                                <p class="text-bg">現在請您回憶一下您在第一題所寫的您做過最有智慧的事情，再來回答下面的問題。</p>
+                                <li>您上述的行動後，對您自己帶來什麼心靈上或是實質上的正面影響？請編號並條列您所感受到的(對自己的)正面影響？(請儘可能就各方面的影響詳細描述。如果沒有，請寫無。謝謝！)</li>
+                                <ol>
+                                    <div id="recall_element"></div>
+                                    <script>
+                                        createInput("recall_element", 10);
+                                    </script>
+                                </ol>
+                                <li>您在上述所描寫的對自己的正面影響，主要包含下面哪一項(請單選出最接近您的行為對您自己所產生的正面影響，謝謝!)</li>
+                                <div id="postiveEffect"></div>
+                                <script>
+                                    radioCreate("postiveEffect");
+                                </script>
+
+                                <li>前述之我實踐想法的行為，給週遭的人或生物，帶來甚麼正面影響？請條列並以數字標號您給他人等帶來的正面影響？(請儘可能就各方面的影響詳細描述。可以包含心靈上或是實質上的正面影響；如果沒有，請寫無。請注意，不是他人帶給您的正面影響，而是您帶給他人的正面影響。謝謝！)</li>
+
+                                <ol>
+                                    <div id="postiveEffect_element"></div>
+                                    <script>
+                                        createInput("postiveEffect_element", 5);
+                                    </script>
+                                    <textarea name="postiveEffect_element_other" placeholder="其他： "></textarea>
+                                </ol>
+                                <li>誰(周遭的人或生物)有因為您實踐自己想法或感受的行為後，而受到正面的影響? (請單選您發揮正面影響範圍最主要的那一項，如果有多項符合，請選您認為您發揮影響層面最廣，或範圍最大的那一項，謝謝!)</li>
+                                <div id="who_postiveEffect"></div>
+                                <script>
+                                    radioCreate("who_postiveEffect");
+                                </script>
+                                <li>下面哪一個選項能最貼切的概括您實踐自己想法或感受的作為對他人或生物所產生的正面影響 (請單選一個最貼近您自己情況的選項，謝謝!)</li>
+                                <div id="what_postiveEffect"></div>
+                                <script>
+                                    radioCreate("what_postiveEffect");
+                                </script>
+
+                                <h3>(六)、整體評估</h3>
+                                <p class="text-bg">現在請您回憶一下您在第一題所寫的您做過最有智慧的事情，再來回答下面的問題。</p>
+                                <li>這整個智慧事件發生的時間，包括您從有想法開始，到有後續作為，以及到您的行為對自己和他人產生正面的影響，這整個過程為期的時間長短為何? (如果事件的影響持續至今，請計算從開始到現在的時間，謝謝!)</li>
+                                <div id="think_period"></div>
+                                <script>
+                                    radioCreate("think_period");
+                                </script>
+
+                                <li>我覺得我透過這個事件所展現的智慧程度是：(請根據您自己的想法來作答，不用考慮其他人的想法。謝謝!)</li>
+                                <input type="range" min="1" max="5" value="3" name="is_wisdom2" class="slider" id="smartDegreeSlider2">
+                                <span id="smartDegree2" style="font-size:1.5em; color:blue;"></span>
+                                <li>為什麼？(請解釋您為什麼給自己這個分數，而沒有選其他的分數的理由。)</li>
+                                <textarea name="why_wisdom"></textarea>
+                                <li>這個智慧事件或多或少可以讓別人了解真正的我。</li>
+                                (不置可否)
+                                <input type="radio" name="realize" value="1" id="">1
+
+                                <input type="radio" name="realize" value="30" id="">30
+
+                                <input type="radio" name="realize" value="50" id="">50
+
+                                <input type="radio" name="realize" value="80" id="">80
+
+                                <input type="radio" name="realize" value="100" id="">100 (非常同意）
+                                <li>為什麼？(請解釋您為什麼給自己這個分數，而沒有選其他的分數的理由。)</li>
+                                <textarea name="why_realize"></textarea>
+                                <p>非常謝謝您的填答。您若對有智慧的事情還有可以指教我的，或是您覺得無法回答這份問卷，請將您的想法請寫在下面。您若對這個研究或這份評量表有任何問題或意見，或是想要一份您所填答的問卷留底。請與我聯繫，或寫至評量表下面。</p>
+                        </ol>
+                        <input type="submit" value="繳交問卷" style="margin:0 auto;display:block;font-size: 1.5em;">
+                    
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</form>
+    <br>
+    <footer>
+        <br>連絡地址：
+        <a href="https://www.google.com.tw/maps/search/%E5%8D%97%E6%8A%95%E7%B8%A3%E5%9F%94%E9%87%8C%E9%8E%AE%E5%A4%A7%E5%AD%B8%E8%B7%AF%E4%B8%80%E8%99%9F/@23.9516602,120.9279216,18z/data=!3m1!4b1?hl=zh-TW">545南投縣埔里鎮大學路一號</a>
+        ，國立暨南國際大學，楊世英收。連絡電話：(049) 2910960#2856，E-mail:
+        <a href="mailto:ywisdom1020@gmail.com">ywisdom1020@gmail.com</a>
+    </footer>
+    <script>
+        var slider1 = document.getElementById("smartDegreeSlider1");
+        var output1 = document.getElementById("smartDegree1");
+        output1.innerHTML = '中等智慧';
+
+        slider1.oninput = function () {
+            var text;
+            switch (this.value) {
+                case '1':
+                    text = '有一點點智慧';
+                    break;
+                case '2':
+                    text = '稍微有智慧';
+                    break;
+                case '3':
+                    text = '中等智慧';
+                    break;
+                case '4':
+                    text = '有智慧';
+                    break;
+                case '5':
+                    text = '非常有智慧';
+                    break;
+            }
+            output1.innerHTML = text;
+        }
+        var slider2 = document.getElementById("smartDegreeSlider2");
+        var output2 = document.getElementById("smartDegree2");
+        output2.innerHTML = '中等智慧';
+
+        slider2.oninput = function () {
+            var text;
+            switch (this.value) {
+                case '1':
+                    text = '有一點點智慧';
+                    break;
+                case '2':
+                    text = '稍微有智慧';
+                    break;
+                case '3':
+                    text = '中等智慧';
+                    break;
+                case '4':
+                    text = '有智慧';
+                    break;
+                case '5':
+                    text = '非常有智慧';
+                    break;
+            }
+            output2.innerHTML = text;
+        }
+    </script>
+    <script>
+        $(function () {
+
+            $('#thedate').datepicker({
+                dateFormat: 'yy-mm-dd',
+                minDate: -7, //限制最小日期，從今天在往前回朔7天
+                maxDate: +7, //限制最大日期，從今天在往後加7天
+            });
+
+        });
+    </script>
+</body>
+
+</html>
