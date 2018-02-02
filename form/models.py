@@ -32,6 +32,8 @@ class Rating(models.Model):
     why_wisdom = models.CharField(max_length=1000)
     realize = models.IntegerField()
     why_realize = models.CharField(max_length=1000)
+    IP_addr = models.CharField(max_length=16)
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return str(self.age) + ' ' + self.gender + self.expertise
 
@@ -39,5 +41,6 @@ class Option(models.Model):
     name = models.CharField(max_length=1000) #Think_element, behavior_element, wisdom_difficulty, wisdom_conquer, recall_element, postiveEffect_element
     content = models.CharField(max_length=1000)
     which = models.ForeignKey(Rating, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name + ' ' + self.content

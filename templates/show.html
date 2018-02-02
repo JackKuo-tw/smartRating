@@ -1,0 +1,36 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th>年齡</th>
+            <th>性別</th>
+            <th>教育程度</th>
+            <th>專長</th>
+            <th>宗教</th>
+            <th>成長城市</th>
+            <th>成長地區</th>
+            <th>有智慧的事</th>
+            <th>為什麼</th>
+        </tr>
+        {% for i in R %}
+        <tr>
+            <th>{{ i.age }}</th>
+            <th>{{ i.gender }}</th>
+            <th>{{ i.edu }}</th>
+            <th>{{ i.expertise }}</th>
+            <th>{{ i.religion }}</th>
+            <th>{{ i.grow_city }}</th>
+            <th>{{ i.grow_town }}</th>
+            <th>{{ i.think }}</th>
+            <th>{{ i.why_realize }}</th>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
