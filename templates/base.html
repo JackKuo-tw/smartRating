@@ -28,15 +28,15 @@
         </table>
     </div>
     <form method="POST">
-            {% csrf_token %}
-    <div>
-        <h2 align="left">一、基本資料</h2>
+        {% csrf_token %}
+        <div>
+            <h2 align="left">一、基本資料</h2>
 
-        <table>
-            <tbody>
-                <tr>
-                    <td>
-                        
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+
                             <p>
                                 <b>年齡</b>（在填答問卷此時的實際歲數）：
                                 <input type="number" name="age" size="4">
@@ -100,7 +100,7 @@
                                 </p>
                                 <p>
                                     <b>評量表填答的時間與地點：</b>
-                                    <input id="thedate" type="text" readonly="readonly">
+                                    <input id="thedate" type="text" name="fill_time" readonly="readonly">
                                     <div id="zipcode2"></div>
                                     <script>
                                         $("#zipcode2").twzipcode({
@@ -114,18 +114,18 @@
                                     </script>
                                 </p>
 
-                       
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <h2>二、問題</h2>
-    <table>
-        <tbody>
-            <tr>
-                <td>
-                 
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <h2>二、問題</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+
                         <h3>(一)、您對智慧的想法</h3>
                         <ol>
                             <li>您認為甚麼是智慧?(請根據您自己的想法來作答，不用考慮其他人的想法。謝謝!)</li>
@@ -266,13 +266,13 @@
                                 <p>非常謝謝您的填答。您若對有智慧的事情還有可以指教我的，或是您覺得無法回答這份問卷，請將您的想法請寫在下面。您若對這個研究或這份評量表有任何問題或意見，或是想要一份您所填答的問卷留底。請與我聯繫，或寫至評量表下面。</p>
                         </ol>
                         <input type="submit" value="繳交問卷" style="margin:0 auto;display:block;font-size: 1.5em;">
-                    
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </div>
-</form>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </form>
     <br>
     <footer>
         <br>連絡地址：

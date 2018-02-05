@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+	<title>{% block title %}{% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/colorlibTable/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/colorlibTable/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/colorlibTable/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<!-- <link rel="stylesheet" type="text/css" href="static/colorlibTable/endor/perfect-scrollbar/perfect-scrollbar.css"> -->
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/colorlibTable/css/util.css">
+	<link rel="stylesheet" type="text/css" href="static/colorlibTable/css/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="col-md-3">
+			<button class="btn btn-warning btn-sm" onclick="doit('xlsx');">xls下載</button>
+
+		</div>
+		<div class="table100 ver3 m-b-110" id="t1">
+			<table data-vertable="ver3">
+				<thead>
+					<tr class="row100 head">
+						{% block thead %} {% endblock %}
+					</tr>
+				</thead>
+				<tbody>
+					{% block tbody %} {% endblock %}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+
+	<!--===============================================================================================-->
+	<script src="static/colorlibTable/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/colorlibTable/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/colorlibTable/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/colorlibTable/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/colorlibTable/js/main.js"></script>
+	<script src="static/js/FileSaver.js"></script>
+	<!-- <script src="static/js/Blob.js"></script> -->
+	<script src="static/js/xlsx.core.min.js"></script>
+
+
+	<script>
+		function doit(type, fn, dl) {
+			var elt = document.getElementById('t1');
+			var wb = XLSX.utils.table_to_book(elt, {
+				sheet: "Sheet JS"
+			});
+			return dl ?
+				XLSX.write(wb, {
+					bookType: type,
+					bookSST: true,
+					type: 'base64'
+				}) :
+				XLSX.writeFile(wb, fn || ('智慧事件自我評量表.' + (type || 'xlsx')));
+		}
+	</script>
+
+
+</body>
+
+</html>

@@ -1,36 +1,35 @@
-<html>
+{% extends 'colorlibTable.html' %}
+{% block title %}智慧事件自我評量表{% endblock %}
 
-<head>
-    <meta charset="utf-8">
-</head>
+{% block thead %}
+        <th class="column100 column1" data-column="column1">年齡</th>
+        <th class="column100 column2" data-column="column2">性別</th>
+        <th class="column100 column3" data-column="column3">教育程度</th>
+        <th class="column100 column4" data-column="column4">專長</th>
+        <th class="column100 column5" data-column="column5">宗教</th>
+        <th class="column100 column6" data-column="column6">成長城市</th>
+        <th class="column100 column7" data-column="column7">成長地區</th>
+        <th class="column100 column8" data-column="column8">有智慧的事</th>
+        <th class="column100 column9" data-column="column9">為什麼</th>
+{% endblock %}
 
-<body>
-    <table>
-        <tr>
-            <th>年齡</th>
-            <th>性別</th>
-            <th>教育程度</th>
-            <th>專長</th>
-            <th>宗教</th>
-            <th>成長城市</th>
-            <th>成長地區</th>
-            <th>有智慧的事</th>
-            <th>為什麼</th>
-        </tr>
-        {% for i in R %}
-        <tr>
-            <th>{{ i.age }}</th>
-            <th>{{ i.gender }}</th>
-            <th>{{ i.edu }}</th>
-            <th>{{ i.expertise }}</th>
-            <th>{{ i.religion }}</th>
-            <th>{{ i.grow_city }}</th>
-            <th>{{ i.grow_town }}</th>
-            <th>{{ i.think }}</th>
-            <th>{{ i.why_realize }}</th>
-        </tr>
+{% block tbody %}
+    {% for i in R %}
+    <tr class="row100">
+        <td class="column100 column1" data-column="column1">{{ i.age }}</td>
+        <td class="column100 column2" data-column="column2">{{ i.gender }}</td>
+        <td class="column100 column3" data-column="column3">{{ i.edu }}</td>
+        <td class="column100 column4" data-column="column4">{{ i.expertise }}</td>
+        <td class="column100 column5" data-column="column5">{{ i.religion }}</td>
+        <td class="column100 column6" data-column="column6">{{ i.grow_city }}</td>
+        <td class="column100 column7" data-column="column7">{{ i.grow_town }}</td>
+        <td class="column100 column8" data-column="column8">{{ i.tdink }}</td>
+        <td class="column100 column9" data-column="column9">{{ i.why_realize }}</th>
+        <!-- {% if i.option_set.all %}
+        {% for o in i.option_set.all %}
+        <td>{{ o.content }}</td>
         {% endfor %}
-    </table>
-</body>
-
-</html>
+        {% endif %} -->
+    </tr>
+    {% endfor %}
+{% endblock %}

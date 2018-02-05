@@ -12,6 +12,7 @@ class Rating(models.Model):
     marriage = models.CharField(max_length=1000)
     grow_city = models.CharField(max_length=1000)
     grow_town = models.CharField(max_length=1000)
+    fill_time = models.DateField()
     fill_city = models.CharField(max_length=1000)
     fill_town = models.CharField(max_length=1000)
     whatIsWisdom = models.CharField(max_length=1000)
